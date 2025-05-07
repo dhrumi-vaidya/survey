@@ -1,0 +1,10 @@
+.questionFields {
+  width: 80%;
+}
+.cta button {
+  padding: 15px;
+}
+.surveyField {
+  width: 90%;
+  justify-content: space-between;
+}

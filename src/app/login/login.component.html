@@ -1,0 +1,125 @@
+<div class="container my-5">
+  <h2 class="text-center mb-4">Login</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-4">
+      <form
+        class="border p-4 shadow-sm rounded"
+        [formGroup]="userForm"
+        (ngSubmit)="onsubmit(userForm)"
+      >
+        <div class="mb-3">
+          <label for="name" class="form-label">Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            formControlName="username"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              userForm.get('username')?.touched &&
+              userForm.get('username')?.invalid
+            "
+          >
+            <span *ngIf="userForm.get('username')?.errors?.['required']">
+              Name is required.
+            </span>
+            <span *ngIf="userForm.get('username')?.errors?.['minlength']">
+              Name must be at least 3 characters long.
+            </span>
+            <span *ngIf="userForm.get('username')?.errors?.['maxlength']">
+              Name cannot exceed 20 characters.
+            </span>
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            formControlName="email"
+          />
+
+          <small
+            class="text-danger"
+            *ngIf="
+              userForm.get('email')?.touched && userForm.get('email')?.invalid
+            "
+          >
+            <span *ngIf="userForm.get('email')?.errors?.['required']">
+              Email is required.
+            </span>
+            <span *ngIf="userForm.get('email')?.errors?.['email']">
+              Invalid email format.
+            </span>
+            <span *ngIf="userForm.get('email')?.errors?.['minlength']">
+              Email must be at least 5 characters long.
+            </span>
+          </small>
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Password:</label>
+          <input
+            [type]="FormFieldType ? 'text' : 'password'"
+            class="form-control"
+            id="password"
+            name="password"
+            formControlName="password"
+          />
+          <small
+            class="text-danger"
+            *ngIf="
+              userForm.get('password')?.touched &&
+              userForm.get('password')?.invalid
+            "
+          >
+            <span *ngIf="userForm.get('password')?.errors?.['required']">
+              Password is required.
+            </span>
+            <span *ngIf="userForm.get('password')?.errors?.['minlength']">
+              Password must be at least 6 characters long.
+            </span>
+            <span *ngIf="userForm.get('password')?.errors?.['pattern']">
+              Password must contain at least one uppercase letter, one lowercase
+              letter, one number, and one special character.
+            </span>
+          </small>
+        </div>
+        <!-- <div class="mb-3">
+          <label for="role" class="form-label">Role:</label>
+          <select
+            name="role"
+            id="role"
+            class="form-select"
+            formControlName="role"
+          >
+            <option value="">Select a Role</option>
+            <option value="admin">Admin</option>
+            <option value="user">User</option>
+          </select>
+          <small
+            class="text-danger"
+            *ngIf="
+              userForm.get('role')?.touched && userForm.get('role')?.invalid
+            "
+          >
+            <span *ngIf="userForm.get('role')?.errors?.['required']">
+              Role is required.
+            </span>
+          </small>
+        </div> -->
+        <button
+          type="submit"
+          class="btn btn-primary"
+          [disabled]="userForm.invalid"
+        >
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

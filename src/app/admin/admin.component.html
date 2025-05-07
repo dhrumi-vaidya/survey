@@ -1,0 +1,68 @@
+<div class="container mt-5">
+  <h2 class="mb-4">Survey Questions Form</h2>
+  <form>
+    <div class="mb-3">
+      <label for="surveyTitle" class="form-label">Survey Title</label>
+      <input type="text" name="title" id="surveyTitle" class="form-control" />
+    </div>
+
+    <div class="surveyFields">
+      <div
+        *ngFor="let field of surveyFields; let i = index"
+        class="surveyField border p-4 rounded mb-4 bg-light shadow-sm d-flex"
+      >
+        <div class="questionFields">
+          <div class="mb-3">
+            <label for="questionText" class="form-label"
+              >Question : {{ i + 1 }}</label
+            >
+            <textarea
+              name="question"
+              [(ngModel)]="field.question"
+              rows="2"
+              class="form-control"
+            ></textarea>
+          </div>
+
+          <div class="mb-3">
+            <label for="questionCategory" class="form-label">Category</label>
+            <select
+              name="category"
+              [(ngModel)]="field.category"
+              class="form-select"
+            >
+              <option value="">Select Question Category</option>
+              <option value="text">Text</option>
+              <option value="list">List</option>
+              <option value="radio">Radio</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="cta d-flex align-items-center gap-2">
+          <button
+            type="button"
+            class="btn btn-success"
+            (click)="addQuestionFields(i)"
+            [disabled]="field.isClicked"
+          >
+            +
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="removeQuestionFields(i)"
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- <div *ngFor="let item of surveyFields; let i = index" class="mb-3">
+    <h4>Question {{ i + 1 }}</h4>
+    <p><strong>Category:</strong> {{ item.category }}</p>
+    <p><strong>Question:</strong> {{ item.question }}</p>
+  </div> -->
+</div>
