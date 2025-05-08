@@ -1,0 +1,28 @@
+{
+  "questions": [
+    {
+      "question": "Product Name",
+      "category": "text",
+      "questionTitle": "",
+      "options": [""],
+      "isClicked": true,
+      "id": "7207"
+    },
+    {
+      "question": "Product Rating",
+      "category": "radio",
+      "questionTitle": "Rate Experience",
+      "options": ["Good", "Bad", "Average"],
+      "isClicked": true,
+      "id": "dce1"
+    },
+    {
+      "question": "Product Uniquesness",
+      "category": "list",
+      "questionTitle": "Product Contained",
+      "options": ["VitaminC", "omega", "mintExtract"],
+      "isClicked": false,
+      "id": "79cd"
+    }
+  ]
+}

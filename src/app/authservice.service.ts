@@ -11,11 +11,8 @@ export class AuthserviceService {
   isAdmin = false;
   isUser = false;
 
-  login(username: string, email: string, password: string, role: string) {
-    localStorage.setItem(
-      'details',
-      JSON.stringify({ username, email, password, role })
-    );
+  login(email: string, password: string, role: string) {
+    localStorage.setItem('details', JSON.stringify({ email, password, role }));
     console.log(role);
     console.log('Login successful');
   }

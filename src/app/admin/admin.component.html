@@ -1,9 +1,15 @@
 <div class="container mt-5">
   <h2 class="mb-4">Survey Questions Form</h2>
-  <form>
+  <form #myForm="ngForm">
     <div class="mb-3">
       <label for="surveyTitle" class="form-label">Survey Title</label>
-      <input type="text" name="title" id="surveyTitle" class="form-control" />
+      <input
+        type="text"
+        name="title"
+        id="surveyTitle"
+        class="form-control"
+        [ngModel]="surveyTitle"
+      />
     </div>
 
     <div class="surveyFields">
@@ -37,6 +43,54 @@
               <option value="radio">Radio</option>
             </select>
           </div>
+          <div *ngIf="field.category === 'radio' || field.category === 'list'">
+            <div *ngIf="field.category === 'radio'">
+              <label for="ListTitle" class="form-label"
+                >Question for {{ field.category }} :</label
+              >
+              <input
+                type="text"
+                name="questionTitle"
+                id="questionTitle"
+                class="form-control"
+                [(ngModel)]="field.questionTitle"
+                placeholder="Enter the question"
+              />
+              <div class="mb-3">
+                <label for="questionOptions" class="form-label">Options</label>
+                <input
+                  type="text"
+                  name="options"
+                  [(ngModel)]="field.options"
+                  class="form-control"
+                  placeholder="Enter options separated by commas"
+                />
+              </div>
+            </div>
+            <div *ngIf="field.category === 'list'">
+              <label for="questionTitle" class="form-label"
+                >Question for {{ field.category }} :</label
+              >
+              <input
+                type="text"
+                name="questionTitle"
+                id="questionTitle"
+                class="form-control"
+                [(ngModel)]="field.questionTitle"
+                placeholder="Enter the question"
+              />
+              <div class="mb-3">
+                <label for="questionOptions" class="form-label">Options</label>
+                <input
+                  type="text"
+                  name="options"
+                  [(ngModel)]="field.options"
+                  class="form-control"
+                  placeholder="Enter options separated by commas"
+                />
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="cta d-flex align-items-center gap-2">
@@ -57,12 +111,13 @@
           </button>
         </div>
       </div>
+
+      <button class="btn btn-outline-primary" (click)="onSubmit(myForm)">
+        Submit
+      </button>
     </div>
   </form>
-
-  <!-- <div *ngFor="let item of surveyFields; let i = index" class="mb-3">
-    <h4>Question {{ i + 1 }}</h4>
-    <p><strong>Category:</strong> {{ item.category }}</p>
-    <p><strong>Question:</strong> {{ item.question }}</p>
-  </div> -->
+</div>
+<div class="d-flex justify-content-end mt-4">
+  <button class="btn btn-outline-danger" (click)="logout()">Logout</button>
 </div>

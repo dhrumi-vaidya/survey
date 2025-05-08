@@ -6,13 +6,11 @@ export const roleGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
   const expectedRole = route.data?.['expectedRole'];
   const userRole = authService.getRole();
-  if (userRole === 'expectedRole') {
+  if (userRole === expectedRole) {
     return true;
-  } else if (userRole === '') {
-    alert('Please login to access this page');
-    return router.navigate(['/']);
   } else {
     alert('Access denied');
+    localStorage.clear();
     return router.navigate(['/']);
   }
 };

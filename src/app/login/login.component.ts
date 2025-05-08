@@ -19,16 +19,12 @@ export class LoginComponent {
   loginDetails: [] = [];
   formsubmitted = false;
   userForm = new FormGroup({
-    username: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
       Validators.pattern(/(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])/),
     ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
   });
   onsubmit(userForm: FormGroup) {
     console.log(userForm.value);
@@ -43,7 +39,6 @@ export class LoginComponent {
       ) {
         this.role = 'admin';
         this.service.login(
-          userForm.value.username,
           userForm.value.email,
           userForm.value.password,
           this.role
@@ -53,7 +48,6 @@ export class LoginComponent {
       } else {
         this.role = 'user';
         this.service.login(
-          userForm.value.username,
           userForm.value.email,
           userForm.value.password,
           this.role
@@ -61,13 +55,6 @@ export class LoginComponent {
         console.log('User component');
         this.router.navigate(['customers']);
       }
-      // if (userForm.value.role === 'admin') {
-      //   console.log('Admin component');
-      //   this.router.navigate(['admin']);
-      // } else if (userForm.value.role === 'user') {
-      //   console.log('User component');
-      //   this.router.navigate(['customers']);
-      // }
     } else {
       console.log('Form submission failed');
     }
