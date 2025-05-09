@@ -17,7 +17,12 @@
             name="anser-{{ i }}"
             placeholder="Your answer here..."
             [(ngModel)]="textAns"
+            #answer="ngModel"
+            required=""
           />
+          <small *ngIf="answer.touched && answer.invalid" class="text-danger">
+            Answer is Required
+          </small>
         </div>
 
         <!-- Radio Buttons -->
@@ -29,8 +34,15 @@
               [value]="options"
               name="radio-{{ i }}"
               [(ngModel)]="radioAns"
+              #RadioInput="ngModel"
             />
             <label class="form-check-label">{{ options }}</label>
+            <div
+              *ngIf="RadioInput.invalid && RadioInput.touched"
+              class="text-danger"
+            >
+              Please select an option.
+            </div>
           </div>
         </div>
 
@@ -46,17 +58,32 @@
               class="form-check-input"
               [value]="options"
               id="check-{{ i }}-{{ j }}"
-              [(ngModel)]="listAns"
+              (change)="onCheckboxChange($event, options)"
+              [checked]="listAns.includes(options)"
+              #checkboxInput="ngModel"
+              ngModel
             />
             <label class="form-check-label" [for]="'check-' + i + '-' + j">{{
               options
             }}</label>
+            <div
+              *ngIf="!listAns.length && checkboxInput.touched"
+              class="text-danger"
+            >
+              Please select at least one option.
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="text-center">
-      <button class="btn btn-primary" type="submit">Submit</button>
+      <button
+        class="btn btn-primary"
+        type="submit"
+        [disabled]="customerForm.invalid"
+      >
+        Submit
+      </button>
     </div>
   </form>
 </div>

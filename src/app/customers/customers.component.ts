@@ -12,21 +12,29 @@ export class CustomersComponent implements OnInit {
   questions: any[] = [];
   textAns = '';
   radioAns = '';
-  listAns: [] = [];
+  listAns: string[] = [];
 
   constructor(private service: DateserviceService, private router: Router) {}
 
   ngOnInit() {
     this.service.getQuestions().subscribe((data) => {
       this.questions = data as any[];
-      console.log(this.questions);
     });
+  }
+  onCheckboxChange(event: any, option: string): void {
+    if (event.target.checked) {
+      this.listAns.push(option);
+    } else {
+      const index = this.listAns.indexOf(option);
+      if (index > -1) {
+        this.listAns.splice(index, 1);
+      }
+    }
   }
 
   submitForm(form: any) {
     alert('Form submitted successfully!');
     console.log('Form value', form.value);
-    console.log(this.questions);
     form.reset();
   }
   logout() {

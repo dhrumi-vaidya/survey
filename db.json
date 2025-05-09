@@ -1,28 +1,65 @@
 {
   "questions": [
     {
-      "question": "Product Name",
+      "question": "What is the capital of France?",
+      "category": "radio",
+      "questionTitle": "Select the capital city",
+      "options": [
+        "Berlin",
+        "Madrid",
+        "Paris",
+        "Rome"
+      ],
+      "isClicked": false,
+      "id": "dd73"
+    },
+    {
+      "id": "a83e",
+      "question": "What is product name",
       "category": "text",
       "questionTitle": "",
-      "options": [""],
-      "isClicked": true,
-      "id": "7207"
+      "options": [],
+      "isClicked": true
     },
     {
-      "question": "Product Rating",
-      "category": "radio",
-      "questionTitle": "Rate Experience",
-      "options": ["Good", "Bad", "Average"],
-      "isClicked": true,
-      "id": "dce1"
-    },
-    {
-      "question": "Product Uniquesness",
+      "id": "477b",
+      "question": "product contentes",
       "category": "list",
       "questionTitle": "Product Contained",
-      "options": ["VitaminC", "omega", "mintExtract"],
-      "isClicked": false,
-      "id": "79cd"
+      "options": [
+        "VitaminC",
+        "omega",
+        "mintExtract"
+      ],
+      "isClicked": false
+    },
+    {
+      "id": "a3f4",
+      "question": "prodcut experience",
+      "category": "radio",
+      "questionTitle": "",
+      "options": [
+        "Good",
+        "Bad",
+        "Average"
+      ],
+      "isClicked": true
+    },
+    {
+      "id": "be13",
+      "question": "",
+      "category": "",
+      "questionTitle": "",
+      "options": [],
+      "isClicked": false
+    },
+    {
+      "id": "fc74",
+      "question": "your name",
+      "category": "text",
+      "questionTitle": "",
+      "options": [],
+      "isClicked": false
     }
   ]
 }

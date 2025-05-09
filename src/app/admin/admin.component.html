@@ -8,8 +8,13 @@
         name="title"
         id="surveyTitle"
         class="form-control"
-        [ngModel]="surveyTitle"
+        [(ngModel)]="surveyTitle"
+        #title="ngModel"
+        required
       />
+      <small *ngIf="title.touched && title.invalid" class="text-danger">
+        Title is required
+      </small>
     </div>
 
     <div class="surveyFields">
@@ -27,7 +32,15 @@
               [(ngModel)]="field.question"
               rows="2"
               class="form-control"
+              #question="ngModel"
+              required
             ></textarea>
+            <small
+              *ngIf="question.touched && question.invalid"
+              class="text-danger"
+            >
+              Question is required
+            </small>
           </div>
 
           <div class="mb-3">
@@ -36,12 +49,20 @@
               name="category"
               [(ngModel)]="field.category"
               class="form-select"
+              #category="ngModel"
+              required
             >
               <option value="">Select Question Category</option>
               <option value="text">Text</option>
               <option value="list">List</option>
               <option value="radio">Radio</option>
             </select>
+            <small
+              *ngIf="category.touched && category.invalid"
+              class="text-danger"
+            >
+              category is required
+            </small>
           </div>
           <div *ngIf="field.category === 'radio' || field.category === 'list'">
             <div *ngIf="field.category === 'radio'">
@@ -55,7 +76,15 @@
                 class="form-control"
                 [(ngModel)]="field.questionTitle"
                 placeholder="Enter the question"
+                #questionTitle="ngModel"
+                required
               />
+              <small
+                *ngIf="questionTitle.touched && questionTitle.invalid"
+                class="text-danger"
+              >
+                Question Title is required
+              </small>
               <div class="mb-3">
                 <label for="questionOptions" class="form-label">Options</label>
                 <input
@@ -64,7 +93,15 @@
                   [(ngModel)]="field.options"
                   class="form-control"
                   placeholder="Enter options separated by commas"
+                  #questionOptions="ngModel"
+                  required
                 />
+                <small
+                  *ngIf="questionOptions.touched && questionOptions.invalid"
+                  class="text-danger"
+                >
+                  Question Options are required
+                </small>
               </div>
             </div>
             <div *ngIf="field.category === 'list'">
@@ -78,7 +115,15 @@
                 class="form-control"
                 [(ngModel)]="field.questionTitle"
                 placeholder="Enter the question"
+                #listquestionTitle="ngModel"
+                required
               />
+              <small
+                *ngIf="listquestionTitle.touched && listquestionTitle.invalid"
+                class="text-danger"
+              >
+                Question is required
+              </small>
               <div class="mb-3">
                 <label for="questionOptions" class="form-label">Options</label>
                 <input
@@ -87,7 +132,17 @@
                   [(ngModel)]="field.options"
                   class="form-control"
                   placeholder="Enter options separated by commas"
+                  #listquestionOptions="ngModel"
+                  required
                 />
+                <small
+                  *ngIf="
+                    listquestionOptions.touched && listquestionOptions.invalid
+                  "
+                  class="text-danger"
+                >
+                  Question Options are required
+                </small>
               </div>
             </div>
           </div>
@@ -112,7 +167,11 @@
         </div>
       </div>
 
-      <button class="btn btn-outline-primary" (click)="onSubmit(myForm)">
+      <button
+        class="btn btn-outline-primary"
+        (click)="onSubmit(myForm)"
+        [disabled]="!myForm.valid"
+      >
         Submit
       </button>
     </div>
